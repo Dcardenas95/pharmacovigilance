@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Medication;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -9,6 +10,6 @@ class MedicationSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Medication::factory()->count(20)->create();
+        Medication::factory()->count(20)->create();
     }
 }

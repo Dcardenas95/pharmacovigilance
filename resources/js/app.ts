@@ -6,6 +6,17 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import { initializeTheme } from './composables/useAppearance';
+import axios from 'axios';
+
+// Configure Axios
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
+
+// Get CSRF token from meta tag
+const token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.getAttribute('content');
+}
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
